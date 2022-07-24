@@ -3,12 +3,10 @@ const bp = require("body-parser");
 const cors = require('cors');
 const express=require('express')
 const app=express();
-const upload=require('express-fileupload')
 const connectMDB= require('./config/db')
 const PORT= process.env.PORT ||4000
 
 
-app.use(upload());
 // app.use(restify.CORS());
 
 // app.use(function (req, res, next) {

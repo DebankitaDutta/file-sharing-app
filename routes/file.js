@@ -20,7 +20,7 @@ const upload=multer({
 router.post('/',(req,res)=>{
     try{
         upload(req,res,async(err)=>{
-            console.log('file ',req.files)
+            console.log('file ',req.file)
             // console.log('file ',req.file.filename)
             if(!req.file){
                 console.log('am here req.files err')
