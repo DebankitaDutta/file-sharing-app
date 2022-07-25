@@ -29,7 +29,7 @@ app.get('/', (req, res ) => {
 app.set('view engine','ejs')
 app.set('views','./views')
 
-// connectMDB();
+ connectMDB();
 app.listen(PORT,()=>{
     console.log('server listens at ',PORT)
 })
