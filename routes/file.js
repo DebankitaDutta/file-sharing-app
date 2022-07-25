@@ -20,14 +20,11 @@ const upload=multer({
 router.post('/',(req,res)=>{
     try{
         upload(req,res,async(err)=>{
-            console.log('file ',req.file)
-            // console.log('file ',req.file.filename)
+            console.log('file**********',req.file)
             if(!req.file){
-                console.log('am here req.files err')
                 return res.json({err:'please upload a file'})
             }
             if(err){
-                console.log('am here under only internal err')
                return res.status(500).send({error: err.message})
             }
             const file=new File({
@@ -38,18 +35,11 @@ router.post('/',(req,res)=>{
     
             })
             const response= await file.save();
-            // res.json({msg:'success'})
             return res.json({file: `${process.env.APP_BASE_URL}/files/${file.uuid}`})
         })
     }catch(err){
         console.log("error",error.message)
     }
-   
-   
 })
-// router.post('/',(req,res)=>{
-//     console.log(req.files)
-//     res.json({msg:'success'})
-// })
 
 module.exports= router
