@@ -28,7 +28,7 @@ dropZone.addEventListener('drop',(e)=>{
     if(files.length){
         fileInput.files=files
     }
-    uploadFile()
+    uploadFile(e)
 })
 
 browseBtn.addEventListener('click',()=>{
@@ -46,6 +46,10 @@ const uploadFile=()=>{
     const formData=new FormData();
     formData.append('myfile',file);
     xhr.open("POST",url,true)
+    xhr.upload.onprogress=updateProgress
     xhr.send(formData)
-
+}
+const updateProgress=(e)=>{
+    const percent= Math.round((e.loaded/e.total)*100)
+    console.log(percent)
 }
