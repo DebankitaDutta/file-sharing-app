@@ -13,7 +13,6 @@ app.use(cors({
     optionsSuccessStatus: 200,
     methods: "GET, POST"
 }))
-
 app.use('/public', express.static(path.join(__dirname, '../assets')));
 
 app.use(bp.json());
@@ -25,6 +24,7 @@ app.use('/files',require('./routes/show'))
 app.get('/', (req, res ) => {
     return res.sendFile(path.join(__dirname, './index.html'));
 });
+
 //setting up the view engine
 app.set('view engine','ejs')
 app.set('views','./views')

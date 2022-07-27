@@ -15,7 +15,6 @@ router.get('/:uuid',async(req,res)=>{
                 fileName: file.filename,
                 fileSize:file.fileSize,
                 downloadLink: `${process.env.APP_BASE_URL}/files/download/${file.uuid}`
-                
             })
         }
 
@@ -23,5 +22,4 @@ router.get('/:uuid',async(req,res)=>{
         return res.render('download',{error:'something went wrong'})
     }
 })
-
 module.exports=router;
