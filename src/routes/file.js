@@ -42,4 +42,37 @@ router.post('/',(req,res)=>{
     }
 })
 
+router.post('/send',async(req,res)=>{
+    const{uuid,emailFrom,emailTo}=req.body
+
+    //validate request
+    if(!uuid || !emailFrom ||!emailTo){
+        return res.status(422).send({error:'All fields are required'})
+    }
+    // get data from db
+    const file= await File.findOne({uuid:uuid})
+    if(file.sender){
+        return res.status(422).send({error:'email is already sent'})
+    }
+    file.sender=emailFrom
+    file.receiver=emailTo
+    const response=await file.save();
+
+    //send mail
+    const sendMail=require('../../services/mail_services');
+    sendMail({
+        from:emailFrom,
+        to:emailTo,
+        subject:'ShareKaro file sharing',
+        text:`${emailFrom} shared a file with you`,
+        htmlTemplate:require('../../services/htmlTemplate')({
+            size: parseInt(file.size/1000) +'KB',
+            downloadLink:`${process.env.APP_BASE_URL}/files/${file.uuid}`,
+            emailFrom:emailFrom,
+            expires:'24 hours'
+        })
+    })
+    res.send({success: true})
+})
+
 module.exports= router

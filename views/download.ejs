@@ -11,6 +11,7 @@
     <section class="download">
         <img class="download-icon" src="/public/img/download-sd.svg" alt="download image" srcset="">
         <%if(locals.error){%>
+            <%console.log('************am here in ejs')%>
             <p><%=locals.error%></p>
             <%}else{%>
             <h2>Your file is ready to download</h2>
