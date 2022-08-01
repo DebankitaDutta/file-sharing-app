@@ -27,7 +27,30 @@
                 <div class="progress-bar"></div>
             </div>
         </div>
+        <div class="sharing-container">
+            <p class="expires">Link expires in 24 hours</p>
+            <div class="input-container">
+                <input type="text" id="copyUrl" readonly value="">
+                <img src="/public/img/copyIcon.png" alt="copyIcon"id="copyBtn">
+            </div>
+            <p>Or send via email</p>
+            <div class="email-container">
+                <form id="email-form">
+                    <div class="form-fields">
+                        <label for="sender">Your email</label>
+                        <input type="text" name="email-from" id="sender" required>
+                    </div>
+                    <div class="form-fields">
+                        <label for="receiver">Receiver's email</label>
+                        <input type="text" name="email-to" id="receiver" required>
+                    </div>
+                    <button type="submit" class="send-btn">Send</button>
+                </form>
+            </div>
+        </div>
     </section>
+    <div class="toast"></div>
+    <div class="bg_illustration"></div>
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
     <script src="/public/index.js"></script>
 </body>

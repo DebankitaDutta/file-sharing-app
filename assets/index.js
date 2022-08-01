@@ -5,11 +5,18 @@ const bgProgress=document.querySelector('.bg-progress');
 const percentDiv=document.querySelector('#percent')
 const progressBar=document.querySelector('.progress-bar')
 const progressContainer=document.querySelector('.progress-container')
+const copyUrl=document.querySelector('#copyUrl')
+const sharingContainer=document.querySelector('.sharing-container')
+const copyBtn=document.querySelector('#copyBtn')
+const emailContainer=document.querySelector('.email-container')
+const emailForm=document.querySelector('#email-form')
+const sender=document.querySelector('#sender')
+const receiver=document.querySelector('#receiver')
+const toast=document.querySelector('.toast')
 const xhr=new XMLHttpRequest();
-
-// const host= "http://127.0.0.1:4000";
-// const uploadUrl= `${host}/api/files`
+const emailSendUrl="http://localhost:4000/api/files/send"
 const url="http://localhost:4000/api/files"
+
 dropZone.addEventListener('dragover',(e)=>{
     e.preventDefault()
     if(!dropZone.classList.contains('dragged')){
@@ -49,6 +56,10 @@ const uploadFile=()=>{
     }
     const formData=new FormData();
     formData.append('myfile',file);
+    xhr.upload.onerror=()=>{
+        showToast(`Error in upload: ${xhr.statusText}`)
+        fileInput.value=""
+    }
     xhr.open("POST",url,true)
     xhr.upload.onprogress=updateProgress
     xhr.send(formData)
@@ -65,5 +76,55 @@ const updateProgress=(e)=>{
 //for showing the link once the file gets uploaded
  const showLink=({file})=>{
         console.log(file)
+        copyUrl.value=file
         progressContainer.style.display='none'
+        sharingContainer.style.display='block'
+        copyBtn.addEventListener('click',(e)=>{
+           copyUrl.select()
+           document.execCommand('copy')
+           showToast('link copied')
+        })
  }
+
+ //to send the email
+
+emailForm.addEventListener('submit',(e)=>{
+    e.preventDefault()
+    const  url= copyUrl.value;
+    const uuid=url.split('/').splice(-1,1)[0];
+    const formData={
+        uuid,
+        emailFrom:emailForm.elements['email-from'].value,
+        emailTo:emailForm.elements['email-to'].value,
+    };
+    console.table(formData)
+    fetch(emailSendUrl,{
+        method:'POST',
+        headers:{
+            'content-type':'application/json'
+        },
+        body:JSON.stringify(formData)
+        
+    }).then((response)=>response.json())
+    .then(({success})=>{
+        if(success){
+            sender.value='';
+            receiver.value='';
+            fileInput.value=''
+            console.log('success!!')
+            showToast('Email Sent Successfully')
+            sharingContainer.style.display="none";
+        }
+    })
+})
+let toastTimer
+
+//foe showing the toast message
+var showToast=(msg)=>{
+    toast.innerText=msg;
+    toast.style.transform="translate(-50%,0px)"
+    clearTimeout(toastTimer)
+    toastTimer=setTimeout(()=>{
+    toast.style.transform="translate(-50%,85px)"
+    },2000)
+}
