@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>share karo!</title>
+    <link rel="stylesheet" href="/public/index.css">
+</head>
+<body>
+    <section class="logout-container">
+        <a href="#">Log Out</a>
+    </section>
+    <section class="upload-container">
+        <div class="drop-zone" ondragover="return false" >
+            <div class="icon-container">
+                <img class="file-image center"src="/public/img/folder-img.png" alt="err found while downloading the image" draggable="false">
+                <img class="file-image left"src="/public/img/folder-img.png" alt="err found while downloading the image" draggable="false">
+                <img class="file-image right"src="/public/img/folder-img.png" alt="err found while downloading the image" draggable="false">
+            </div>
+            <div class="title">
+                <input type="file" class="inputFile">   
+                Drop your files here or <span class="browseBtn">Browse</span></div>
+        </div>
+        <div class="progress-container">
+            <div class="bg-progress"></div>
+            <div class="inner-container">
+                <div class="progress-title">uploading...</div>
+                <div class="percent-container"><span id="percent">0</span>%</div>
+                <div class="progress-bar"></div>
+            </div>
+        </div>
+        <div class="sharing-container">
+            <p class="expires">Link expires in 24 hours</p>
+            <div class="input-container">
+                <input type="text" id="copyUrl" readonly value="">
+                <img src="/public/img/copyIcon.png" alt="copyIcon"id="copyBtn">
+            </div>
+            <p>Or send via email</p>
+            <div class="email-container">
+                <form id="email-form">
+                    <div class="form-fields">
+                        <label for="sender">Your email</label>
+                        <input type="text" name="email-from" id="sender" required>
+                    </div>
+                    <div class="form-fields">
+                        <label for="receiver">Receiver's email</label>
+                        <input type="text" name="email-to" id="receiver" required>
+                    </div>
+                    <button type="submit" class="send-btn">Send</button>
+                </form>
+            </div>
+        </div>
+    </section>
+    <div class="toast"></div>
+    <div class="bg_illustration"></div>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script src="/public/index.js"></script>
+</body>
+</html>

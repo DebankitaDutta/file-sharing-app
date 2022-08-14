@@ -22,6 +22,7 @@ app.use(bp.urlencoded({ extended: true }));
 app.use('/api/files',require('./routes/file'))
 app.use('/files',require('./routes/show'))
 app.use('/files/download',require('./routes/download'))
+app.use('/auth',require('./routes/auth')) // auth apis
 
 app.get('/', (req, res ) => {
     return res.sendFile(path.join(__dirname, './index.html'));

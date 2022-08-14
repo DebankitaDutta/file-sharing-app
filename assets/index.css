@@ -272,3 +272,17 @@ section.download {
     width: 50vw;
 
 }
+.logout-container a{
+    width: 6rem;
+    height: 3rem;
+    text-decoration: none;
+    font-size: 1.3rem;
+    position: absolute;
+    top: 0px;
+    right: 0px;
+    color: white;
+    text-align: center;
+    cursor: pointer;
+    border-radius: 10%;
+    background: #035cf4a3;
+}

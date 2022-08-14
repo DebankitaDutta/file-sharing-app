@@ -4,54 +4,104 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>share karo!</title>
-    <link rel="stylesheet" href="/public/index.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.2/css/all.min.css" integrity="sha512-1sCRPdkRXhBV2PBLUdRb4tMg1w2YPf37qatUFeS7zlBy7jJI8Lf4VHwWfZZfpXtYSLy85pkm9GaYVYMfw5BC1A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <title>sign in and signup form</title>
+    <link rel="stylesheet" href="/public/style.css">
 </head>
 <body>
-    <section class="upload-container">
-        <div class="drop-zone" ondragover="return false" >
-            <div class="icon-container">
-                <img class="file-image center"src="/public/img/folder-img.png" alt="err found while downloading the image" draggable="false">
-                <img class="file-image left"src="/public/img/folder-img.png" alt="err found while downloading the image" draggable="false">
-                <img class="file-image right"src="/public/img/folder-img.png" alt="err found while downloading the image" draggable="false">
-            </div>
-            <div class="title">
-                <input type="file" class="inputFile">   
-                Drop your files here or <span class="browseBtn">Browse</span></div>
-        </div>
-        <div class="progress-container">
-            <div class="bg-progress"></div>
-            <div class="inner-container">
-                <div class="progress-title">uploading...</div>
-                <div class="percent-container"><span id="percent">0</span>%</div>
-                <div class="progress-bar"></div>
-            </div>
-        </div>
-        <div class="sharing-container">
-            <p class="expires">Link expires in 24 hours</p>
-            <div class="input-container">
-                <input type="text" id="copyUrl" readonly value="">
-                <img src="/public/img/copyIcon.png" alt="copyIcon"id="copyBtn">
-            </div>
-            <p>Or send via email</p>
-            <div class="email-container">
-                <form id="email-form">
-                    <div class="form-fields">
-                        <label for="sender">Your email</label>
-                        <input type="text" name="email-from" id="sender" required>
+    <div class="container">
+        <div class="forms-container">
+            <div class="signin-signup">
+                <form action="#" class="sign-in-form">
+                    <h2 class="signin">Signin</h2>
+                    <div class="input-field">
+                        <i class="fas fa-user"></i>
+                        <input type="text" placeholder="username">
                     </div>
-                    <div class="form-fields">
-                        <label for="receiver">Receiver's email</label>
-                        <input type="text" name="email-to" id="receiver" required>
+                    <div class="input-field">
+                        <i class="fas fa-lock"></i>
+                        <input type="password" placeholder="password">
                     </div>
-                    <button type="submit" class="send-btn">Send</button>
+                    <!-- <input type="submit" class="btn solid" value="login"> -->
+                    <a href="/public/fileUpload.html" class="btn solid">login</a>
+                    <p class="social-text">Or Sign in with social platforms</p>
+                    <div class="social-media">
+                        <a href="#" class="social-icon">
+                            <i class="fab fa-google"></i>
+                        </a>
+                        <a href="#" class="social-icon">
+                            <i class="fab fa-github"></i>
+                        </a>
+                        <a href="#" class="social-icon">
+                            <i class="fab fa-twitter"></i>
+                        </a>
+                    </div>
+                </form>
+            </div>
+
+
+            <div class="signup-signup">
+                <form action="#" class="sign-up-form">
+                    <h2 class="signin">Signup</h2>
+                    <div class="input-field">
+                        <i class="fas fa-envelope"></i>
+                        <input type="text" name="" placeholder="email">
+                    </div>
+                    <div class="input-field">
+                        <i class="fas fa-user"></i>
+                        <input type="text" name="" placeholder="username">
+                    </div>
+                    <div class="input-field">
+                        <i class="fas fa-lock"></i>
+                        <input type="password" name="" placeholder="password">
+                    </div>
+                    <div class="input-field">
+                        <i class="fas fa-lock"></i>
+                        <input type="password" name="" placeholder="confirm password">
+                    </div>
+                    <div class="input-field">
+                        <i class="fas fa-mobile-screen-button"></i>
+                        <input type="text" name="" placeholder="phone number">
+                    </div>
+                    <input type="submit" class="btn solid" value="SignUp">
+                    <p class="social-text">Or Sign up with social platforms</p>
+                    <div class="social-media">
+                        <a href="#" class="social-icon">
+                            <i class="fab fa-google"></i>
+                        </a>
+                        <a href="#" class="social-icon">
+                            <i class="fab fa-github"></i>
+                        </a>
+                        <a href="#" class="social-icon">
+                            <i class="fab fa-twitter"></i>
+                        </a>
+                    </div>
                 </form>
             </div>
         </div>
-    </section>
-    <div class="toast"></div>
-    <div class="bg_illustration"></div>
-    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
-    <script src="/public/index.js"></script>
+        <div class="panels-container">
+            <div class="panel left-pannel">
+                <div class="content">
+                    <h3>New Here?</h3>
+                    <p>Start your file sharing journey with Share Karo
+                    </p>
+                    <button class="btn transparent" id="sign-up-button">Sign Up</button>
+                </div>
+                <img src="/public/img/login.png" alt="unable to download image" class="image">
+            </div>
+    
+            <div class="panel right-pannel">
+                <div class="content">
+                    <h3>One of us?</h3>
+                    <p>Sign In to continue
+                    </p>
+                    <button class="btn transparent" id="sign-in-button">Sign In</button>
+                </div>
+                <img src="/public/img/register.png" alt="unable to download image" class="image">
+            </div>
+        </div>
+    </div>
+
+    <script src="/public/auth.js"></script>
 </body>
 </html>
