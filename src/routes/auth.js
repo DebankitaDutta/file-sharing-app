@@ -18,7 +18,6 @@ router.post('/signup',async(req,res)=>{
     confirmPassword,
     phoneNumber
    }
-   console.log('inside signup');
    console.log('*************',newUser)
 // request body validation
 

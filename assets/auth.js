@@ -216,6 +216,7 @@ async function LoginWithEmail(e){
 
 let toastTimer;
 
+//displaying messages
 var showToast=(msg)=>{
     toast.innerText=msg;
     toast.style.transform="translate(-120%,13px)";
@@ -240,15 +241,12 @@ var showToast=(msg)=>{
     },3000)
 }
 
-// sign_up_form.addEventListener('submit',Signup)
-const signup=document.querySelector('.signup');
-signup.addEventListener('click',Signup)
+sign_up_form.addEventListener('submit',Signup)
 
+//signup
 async function Signup(e){
-    console.log('signup clicked')
     e.preventDefault();
     const email=document.querySelector('#email').value;
-    console.log('email= ',email)
     const username=document.querySelector('#username').value;
     const password=document.querySelector('#password').value;
     const confirmPassword=document.querySelector('#confirmPassword').value;
@@ -271,5 +269,6 @@ async function Signup(e){
         }
      }
      xhr.send(JSON.stringify(newUser))
+     sign_in_form.reset();
      
 }
