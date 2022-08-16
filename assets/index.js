@@ -17,6 +17,26 @@ const xhr=new XMLHttpRequest();
 const emailSendUrl="http://localhost:4000/api/files/send"
 const url="http://localhost:4000/api/files"
 
+//firebase imports and configuration
+import { initializeApp } from 'https://www.gstatic.com/firebasejs/9.9.2/firebase-app.js'
+import { getAuth,signOut} from 'https://www.gstatic.com/firebasejs/9.9.2/firebase-auth.js'
+const firebaseConfig = {
+            apiKey: "AIzaSyDVlZTg2wX60Dln4N123bjQCSho-I_DuNU",
+            authDomain: "filesharingauth.firebaseapp.com",
+            projectId: "filesharingauth",
+            storageBucket: "filesharingauth.appspot.com",
+            messagingSenderId: "386241019134",
+            appId: "1:386241019134:web:83feff5acf1ebf48b179af",
+            measurementId: "G-3FK09SE0X2"
+        };
+
+    // Initialize Firebase
+    const app = initializeApp(firebaseConfig);
+    const auth=getAuth();
+
+
+
+
 dropZone.addEventListener('dragover',(e)=>{
     e.preventDefault()
     if(!dropZone.classList.contains('dragged')){
@@ -127,4 +147,18 @@ var showToast=(msg)=>{
     toastTimer=setTimeout(()=>{
     toast.style.transform="translate(-50%,85px)"
     },2000)
+}
+
+//for loggingOut
+const logOut=document.querySelector('.logOut')
+logOut.addEventListener('click',logout)
+
+function logout(){
+    console.log('logging out')
+    signOut(auth).then(res=>{
+        console.log('successfully loggedout')
+        location.replace("/");
+    }).catch(err=>{
+        console.log('err: ',err)
+    })
 }

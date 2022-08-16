@@ -4,12 +4,32 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.2/css/all.min.css" integrity="sha512-1sCRPdkRXhBV2PBLUdRb4tMg1w2YPf37qatUFeS7zlBy7jJI8Lf4VHwWfZZfpXtYSLy85pkm9GaYVYMfw5BC1A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <title>share karo!</title>
     <link rel="stylesheet" href="/public/index.css">
+    <script>
+        let wcMsgTimer;
+        function showWelcomemsg(){
+            const msg=document.querySelector('.welcomeMsg');
+            msg.style.transform="translateX(-10%)"
+            msg.style.transition="1.5s ease-in-out"
+            clearTimeout(wcMsgTimer)
+            wcMsgTimer=setTimeout(()=>{
+            msg.style.transform="translateX(150%)"
+            },2500)
+        }
+    </script>
 </head>
-<body>
+<body onload="showWelcomemsg()">
+    <div class="welcomeMsg">
+        <p>Welcome to Share Karo</p>
+        <img src="/public/img/coder.png" class="shareKaroIcon" alt="">
+     </div>
     <section class="logout-container">
-        <a href="#">Log Out</a>
+        <a href="#" class="logOut">
+            <p>Log Out </p> 
+            <i class="social-icon fa-solid fa-arrow-right-from-bracket"></i>
+        </a>
     </section>
     <section class="upload-container">
         <div class="drop-zone" ondragover="return false" >
@@ -55,6 +75,6 @@
     <div class="toast"></div>
     <div class="bg_illustration"></div>
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
-    <script src="/public/index.js"></script>
+    <script type='module' src="/public/index.js"></script>
 </body>
 </html>

@@ -40,6 +40,7 @@ async function signupUserValidation(userDetails) {
 }
 
  async function loginUserValidation(loginUserDetails){
+    console.log('loginUserdetails******',loginUserDetails)
     const{email,password}=loginUserDetails
     if(!email || !password){
         return "all fields are required"
@@ -63,7 +64,7 @@ async function forgotPasswordEmailValidation(email){
     const userRef=db.collection('users');
     const emailExists= await userRef.where('email','==',email).get();
     if (emailExists.empty) {
-        return "A user with this email does not exist."
+        return "A user with this email does not exist"
     } 
     return ""
 }

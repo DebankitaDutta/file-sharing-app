@@ -7,34 +7,38 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.2/css/all.min.css" integrity="sha512-1sCRPdkRXhBV2PBLUdRb4tMg1w2YPf37qatUFeS7zlBy7jJI8Lf4VHwWfZZfpXtYSLy85pkm9GaYVYMfw5BC1A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <title>sign in and signup form</title>
     <link rel="stylesheet" href="/public/style.css">
+
 </head>
-<body>
+<body >
     <div class="container">
+        <div class="toast"></div>
         <div class="forms-container">
             <div class="signin-signup">
                 <form action="#" class="sign-in-form">
                     <h2 class="signin">Signin</h2>
                     <div class="input-field">
                         <i class="fas fa-user"></i>
-                        <input type="text" placeholder="username">
+                        <input type="text" placeholder="email" id="loginEmail" name="email" value=''>
                     </div>
                     <div class="input-field">
                         <i class="fas fa-lock"></i>
-                        <input type="password" placeholder="password">
+                        <input type="password" placeholder="password" id="loginPassword" name="password"value=''>
                     </div>
-                    <!-- <input type="submit" class="btn solid" value="login"> -->
-                    <a href="/public/fileUpload.html" class="btn solid">login</a>
+                    <input type="submit" class="btn solid login" value="login">
                     <p class="social-text">Or Sign in with social platforms</p>
                     <div class="social-media">
-                        <a href="#" class="social-icon">
+                        <a href="#" class="social-icon google">
                             <i class="fab fa-google"></i>
                         </a>
-                        <a href="#" class="social-icon">
+                        <a href="#" class="social-icon github">
                             <i class="fab fa-github"></i>
                         </a>
-                        <a href="#" class="social-icon">
-                            <i class="fab fa-twitter"></i>
+                        <a href="#" class="social-icon facebook">
+                            <i class="fab fa-facebook"></i>
                         </a>
+                        <!-- <a href="#" class="social-icon logout">
+                            <i class="fa-solid fa-arrow-right-from-bracket"></i>
+                        </a> -->
                     </div>
                 </form>
             </div>
@@ -66,14 +70,17 @@
                     <input type="submit" class="btn solid" value="SignUp">
                     <p class="social-text">Or Sign up with social platforms</p>
                     <div class="social-media">
-                        <a href="#" class="social-icon">
+                        <a href="#" class="social-icon google">
                             <i class="fab fa-google"></i>
                         </a>
-                        <a href="#" class="social-icon">
+                        <a href="#" class="social-icon github">
                             <i class="fab fa-github"></i>
                         </a>
-                        <a href="#" class="social-icon">
-                            <i class="fab fa-twitter"></i>
+                        <a href="#" class="social-icon facebook">
+                            <i class="fab fa-facebook"></i>
+                        </a>
+                        <a href="#" class="social-icon logout">
+                            <i class="fab fa-arrow-right-from-bracket"></i>
                         </a>
                     </div>
                 </form>
@@ -101,7 +108,9 @@
             </div>
         </div>
     </div>
-
-    <script src="/public/auth.js"></script>
+    
+    <script type="module" src="/public/auth.js">
+    </script>
 </body>
+
 </html>

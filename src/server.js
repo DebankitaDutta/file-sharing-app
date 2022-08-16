@@ -13,10 +13,10 @@ app.use(cors({
     optionsSuccessStatus: 200,
     methods: "GET, POST"
 }))
+app.use(express.json())
+app.use(express.urlencoded({extended:false}));
 app.use('/public', express.static(path.join(__dirname, '../assets')));
 
-app.use(bp.json());
-app.use(bp.urlencoded({ extended: true }));
 
 //apis
 app.use('/api/files',require('./routes/file'))

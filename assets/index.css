@@ -273,16 +273,61 @@ section.download {
 
 }
 .logout-container a{
-    width: 6rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 8rem;
     height: 3rem;
     text-decoration: none;
-    font-size: 1.3rem;
+    font-size: 1.2rem;
+    font-weight: 600;
     position: absolute;
     top: 0px;
     right: 0px;
-    color: white;
-    text-align: center;
+    color: #ffff;
+    padding: 3px 2px;
     cursor: pointer;
     border-radius: 10%;
     background: #035cf4a3;
+    transition: all 0.5s ease-in-out;
+}
+.social-icon{
+    margin: 0 0.65rem;
+    text-decoration: none;
+    color: #333333d9;
+    font-size: 1.5rem;
+    cursor: pointer;
+    
+}
+.logout-container a:hover{
+    background:#035cf485
+}
+
+.welcomeMsg{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 10%;
+    width: 55%;
+    position: absolute;
+    left: 25%;
+    top: 13%;
+    color: #373434;
+    font-size: 28px;
+    font-weight: 800;
+    box-sizing: border-box;
+    background: #d3c1ea;
+    border-radius: 21%;
+    transform: translate(-150%, 10px);
+    transition: all 0.5s ease-in-out;
+}
+
+.shareKaroIcon{
+    height: 40px;
+    width: 50px;
+    margin: 0.4rem 1rem 0rem;
+}
+.welcomeMsg p{
+    margin-top: 0;
+    margin-bottom: 0;
 }
