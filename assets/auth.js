@@ -3,6 +3,7 @@
 import { initializeApp } from 'https://www.gstatic.com/firebasejs/9.9.2/firebase-app.js'
 import { getAuth, GoogleAuthProvider, signInWithPopup,GithubAuthProvider,FacebookAuthProvider, signOut, fetchSignInMethodsForEmail,signInWithEmailAndPassword,linkWithCredential,onAuthStateChanged} from 'https://www.gstatic.com/firebasejs/9.9.2/firebase-auth.js'
 import { getFirestore,addDoc,collection } from "https://www.gstatic.com/firebasejs/9.9.2/firebase-firestore.js";
+import { emit } from 'nodemon';
 const firebaseConfig = {
             apiKey: "AIzaSyDVlZTg2wX60Dln4N123bjQCSho-I_DuNU",
             authDomain: "filesharingauth.firebaseapp.com",
@@ -20,16 +21,22 @@ const firebaseConfig = {
 
     const xhr=new XMLHttpRequest();
     const loginUrl='http://localhost:4000/auth/login'
+    // const signupUrl='http://localhost:4000/auth/signup'
 
     const login=document.querySelector('.login')
     const google=document.querySelector('.google')
     const github=document.querySelector('.github')
     const facebook=document.querySelector('.facebook')
 
+    const google1=document.querySelector('.google1')
+    const github1=document.querySelector('.github1')
+    const facebook1=document.querySelector('.facebook1')
+
 
 const sign_in_btn= document.querySelector('#sign-in-button');
 const sign_up_btn= document.querySelector('#sign-up-button');
 const sign_in_form=document.querySelector('.sign-in-form');
+const sign_up_form=document.querySelector('.sign-up-form');
 const container=document.querySelector('.container')
 const toast=document.querySelector('.toast')
 
@@ -43,6 +50,8 @@ sign_in_btn.addEventListener('click',()=>{
 })
 
 google.addEventListener('click',GoogleLogin)
+google1.addEventListener('click',GoogleLogin)
+
 let provider=new GoogleAuthProvider()
 
 
@@ -74,6 +83,8 @@ let provider=new GoogleAuthProvider()
 }
 
 github.addEventListener('click',GithubLogin)
+github1.addEventListener('click',GithubLogin)
+
 let githubProvider= new GithubAuthProvider()
 
 //login with github
@@ -101,6 +112,8 @@ async function GithubLogin(){
 }
 
 facebook.addEventListener('click',FacebookLogin)
+facebook1.addEventListener('click',FacebookLogin)
+
 let FacebookProvider= new FacebookAuthProvider()
 
 //login with facebook
@@ -181,12 +194,11 @@ async function checkUserStatus(){
 
 sign_in_form.addEventListener('submit',LoginWithEmail);
 
+//user login with email and password
 async function LoginWithEmail(e){
     e.preventDefault();
     const email=document.getElementById('loginEmail').value;
     const password=document.getElementById('loginPassword').value;
-    console.log('email= ',email)
-    console.log('password= ',password)
     const loginCred={
         email,
         password
@@ -214,7 +226,7 @@ var showToast=(msg)=>{
     }
     else{
         toast.style.background='#43ec77cf'
-        location.replace("/public/fileUpload.html");
+        window.location.href="/public/fileUpload.html";
     }
     clearTimeout(toastTimer)
     toastTimer=setTimeout(()=>{
@@ -222,3 +234,35 @@ var showToast=(msg)=>{
     },2000)
 }
 
+// sign_up_form.addEventListener('submit',Signup)
+// const signup=document.querySelector('.signup');
+// signup.addEventListener('click',Signup)
+
+// async function Signup(e){
+//     console.log('signup clicked')
+//     e.preventDefault();
+//     const email=document.querySelector('#email').value;
+//     // console.log('email= ',email)
+//     const username=document.querySelector('#username').value;
+//     const password=document.querySelector('#password').value;
+//     const confirmPassword=document.querySelector('#confirmPassword').value;
+//     const phomeNumber=document.querySelector('#phomeNumber').value;
+
+//     const newUser={
+//         email,
+//         username,
+//         password,
+//         confirmPassword,
+//         phomeNumber
+//     }
+//     console.log(JSON.stringify(newUser))
+//      xhr.open('POST',signupUrl,true);
+//      xhr.setRequestHeader('Content-Type','application/json')
+//      xhr.onreadystatechange=()=>{
+//         if(xhr.readyState===XMLHttpRequest.DONE){
+//             console.log((JSON.parse(xhr.response)).msg)
+//         }
+//      }
+//      xhr.send(JSON.stringify(newUser))
+     
+// }

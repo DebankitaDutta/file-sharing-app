@@ -19,7 +19,7 @@ const url="http://localhost:4000/api/files"
 
 //firebase imports and configuration
 import { initializeApp } from 'https://www.gstatic.com/firebasejs/9.9.2/firebase-app.js'
-import { getAuth,signOut} from 'https://www.gstatic.com/firebasejs/9.9.2/firebase-auth.js'
+import { getAuth,signOut,onAuthStateChanged} from 'https://www.gstatic.com/firebasejs/9.9.2/firebase-auth.js'
 const firebaseConfig = {
             apiKey: "AIzaSyDVlZTg2wX60Dln4N123bjQCSho-I_DuNU",
             authDomain: "filesharingauth.firebaseapp.com",
@@ -35,6 +35,19 @@ const firebaseConfig = {
     const auth=getAuth();
 
 
+
+//to check if the user is authorized or not
+
+// onAuthStateChanged(auth,(user)=>{
+//     if(user){
+//         console.log('welcome')
+//     }
+//     else{
+//         console.log("user isn't authorized")
+//         // window.location.href="/"
+//         showToast('user isnt authorized')
+//     }
+// })
 
 
 dropZone.addEventListener('dragover',(e)=>{
@@ -162,3 +175,4 @@ function logout(){
         console.log('err: ',err)
     })
 }
+
