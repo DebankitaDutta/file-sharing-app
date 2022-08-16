@@ -6,8 +6,8 @@ db.settings({ timestampsInSnapshots: true });
 async function signupUserValidation(userDetails) {
     const{username,email,password,confirmPassword,phoneNumber}=userDetails
 
-    if(!email || !password){
-        return "email and password are required"
+    if(!email || !password ||!password ||!confirmPassword ||!phoneNumber){
+        return "All fields are required"
     }
     if(password.length>6 && /[!@#$%^&]/.test(password) && /[A-Z]/.test(password)&& /[a-z]/.test(password) && /[0-9]/.test(password)){
         console.log('ok')

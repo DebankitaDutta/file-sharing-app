@@ -22,8 +22,8 @@ router.post('/signup',async(req,res)=>{
    console.log('*************',newUser)
 // request body validation
 
-    msg= await signupUserValidation(newUser)
-    if(msg!=""){
+    errMsg= await signupUserValidation(newUser)
+    if(errMsg!=""){
         return res.status(201).json({
             msg:errMsg
         })
@@ -41,7 +41,7 @@ auth.createUserWithEmailAndPassword(authentication,email,password)
 .then(async(userCred)=>{
     const response= await db.collection('users').doc(userCred.user.email).set(newUser);  //storing data into firebase
 
-    return res.json({'success':"successfully signedup."})
+    return res.status(200).json({'msg':"successfully signedup."})
     }).catch((error)=>{
         console.log(error)
     })

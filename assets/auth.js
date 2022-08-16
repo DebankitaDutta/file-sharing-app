@@ -3,7 +3,6 @@
 import { initializeApp } from 'https://www.gstatic.com/firebasejs/9.9.2/firebase-app.js'
 import { getAuth, GoogleAuthProvider, signInWithPopup,GithubAuthProvider,FacebookAuthProvider, signOut, fetchSignInMethodsForEmail,signInWithEmailAndPassword,linkWithCredential,onAuthStateChanged} from 'https://www.gstatic.com/firebasejs/9.9.2/firebase-auth.js'
 import { getFirestore,addDoc,collection } from "https://www.gstatic.com/firebasejs/9.9.2/firebase-firestore.js";
-import { emit } from 'nodemon';
 const firebaseConfig = {
             apiKey: "AIzaSyDVlZTg2wX60Dln4N123bjQCSho-I_DuNU",
             authDomain: "filesharingauth.firebaseapp.com",
@@ -21,7 +20,7 @@ const firebaseConfig = {
 
     const xhr=new XMLHttpRequest();
     const loginUrl='http://localhost:4000/auth/login'
-    // const signupUrl='http://localhost:4000/auth/signup'
+    const signupUrl='http://localhost:4000/auth/signup'
 
     const login=document.querySelector('.login')
     const google=document.querySelector('.google')
@@ -219,8 +218,15 @@ let toastTimer;
 
 var showToast=(msg)=>{
     toast.innerText=msg;
-    toast.style.transform="translate(-100%,13px)";
-    toast.style.transition="transform 0.5s ease-out";
+    toast.style.transform="translate(-120%,13px)";
+    toast.style.transition="transform 0.7s ease-out";
+    toast.style.zIndex="2";
+
+    if(msg.includes("combinations")){
+        toast.style.right= "-42%";
+        toast.style.height= "4.8rem";
+        toast.style.width= "42%";
+    }
     if(xhr.status!=200){
         toast.style.background='#de4c6cb3';
     }
@@ -231,38 +237,39 @@ var showToast=(msg)=>{
     clearTimeout(toastTimer)
     toastTimer=setTimeout(()=>{
     toast.style.transform="translate(4%,13px)"
-    },2000)
+    },3000)
 }
 
 // sign_up_form.addEventListener('submit',Signup)
-// const signup=document.querySelector('.signup');
-// signup.addEventListener('click',Signup)
+const signup=document.querySelector('.signup');
+signup.addEventListener('click',Signup)
 
-// async function Signup(e){
-//     console.log('signup clicked')
-//     e.preventDefault();
-//     const email=document.querySelector('#email').value;
-//     // console.log('email= ',email)
-//     const username=document.querySelector('#username').value;
-//     const password=document.querySelector('#password').value;
-//     const confirmPassword=document.querySelector('#confirmPassword').value;
-//     const phomeNumber=document.querySelector('#phomeNumber').value;
+async function Signup(e){
+    console.log('signup clicked')
+    e.preventDefault();
+    const email=document.querySelector('#email').value;
+    console.log('email= ',email)
+    const username=document.querySelector('#username').value;
+    const password=document.querySelector('#password').value;
+    const confirmPassword=document.querySelector('#confirmPassword').value;
+    const phoneNumber=document.querySelector('#phoneNumber').value;
 
-//     const newUser={
-//         email,
-//         username,
-//         password,
-//         confirmPassword,
-//         phomeNumber
-//     }
-//     console.log(JSON.stringify(newUser))
-//      xhr.open('POST',signupUrl,true);
-//      xhr.setRequestHeader('Content-Type','application/json')
-//      xhr.onreadystatechange=()=>{
-//         if(xhr.readyState===XMLHttpRequest.DONE){
-//             console.log((JSON.parse(xhr.response)).msg)
-//         }
-//      }
-//      xhr.send(JSON.stringify(newUser))
+    const newUser={
+        email,
+        username,
+        password,
+        confirmPassword,
+        phoneNumber
+    }
+    console.log(JSON.stringify(newUser))
+     xhr.open('POST',signupUrl,true);
+     xhr.setRequestHeader('Content-Type','application/json')
+     xhr.onreadystatechange=()=>{
+        if(xhr.readyState===XMLHttpRequest.DONE){
+            console.log((JSON.parse(xhr.response)).msg)
+            showToast((JSON.parse(xhr.response)).msg)
+        }
+     }
+     xhr.send(JSON.stringify(newUser))
      
-// }
+}
