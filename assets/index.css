@@ -331,3 +331,26 @@ section.download {
     margin-top: 0;
     margin-bottom: 0;
 }
+
+/* page responsiveness */
+@media screen and (max-width: 900px){
+    :root{
+        --container-width:320px;
+    }
+    .email-container form{
+        flex-direction: column;
+        width: 300px;
+    }
+    .bg_illustration{
+        display: none;
+    }
+    .welcomeMsg{
+        width: 60%;
+        font-size: 18px;
+        font-weight: 800;
+    }
+    form .form-fields{
+        flex-direction: column;
+        width: 300px;
+    }
+}

@@ -14,6 +14,7 @@ const sender=document.querySelector('#sender')
 const receiver=document.querySelector('#receiver')
 const toast=document.querySelector('.toast')
 const xhr=new XMLHttpRequest();
+
 const emailSendUrl="http://localhost:4000/api/files/send"
 const url="http://localhost:4000/api/files"
 
@@ -35,6 +36,7 @@ const firebaseConfig = {
     const auth=getAuth();
 
 
+const maxFileSize=100*1024*1024;
 
 //to check if the user is authorized or not
 
@@ -68,7 +70,7 @@ dropZone.addEventListener('dragleave',(e)=>{
 dropZone.addEventListener('drop',(e)=>{
     e.preventDefault();
     dropZone.classList.remove('dragged')
-    files=e.dataTransfer.files
+   let files=e.dataTransfer.files
     if(files.length){
         fileInput.files=files
     }
@@ -79,8 +81,19 @@ browseBtn.addEventListener('click',()=>{
     fileInput.click()
 })
 const uploadFile=()=>{
-    progressContainer.style.display='Block'
+    if(fileInput.files.length>1){
+        showToast('Please upload 1 file at a time 🤔')
+        fileInput.value='';
+        return;
+    }
     const file=fileInput.files[0];
+    if(file.size>maxFileSize){
+        
+        showToast("file size can't be more than 100 mb 😟")
+        fileInput.value='';
+        return;
+    }
+    progressContainer.style.display='Block'
     xhr.onreadystatechange=()=>{
         if(xhr.readyState===XMLHttpRequest.DONE){
             console.log(xhr.response)
@@ -131,24 +144,25 @@ emailForm.addEventListener('submit',(e)=>{
         emailTo:emailForm.elements['email-to'].value,
     };
     console.table(formData)
-    fetch(emailSendUrl,{
-        method:'POST',
-        headers:{
-            'content-type':'application/json'
-        },
-        body:JSON.stringify(formData)
-        
-    }).then((response)=>response.json())
-    .then(({success})=>{
-        if(success){
-            sender.value='';
-            receiver.value='';
-            fileInput.value=''
-            console.log('success!!')
-            showToast('Email Sent Successfully')
-            sharingContainer.style.display="none";
+   const body=JSON.stringify(formData)
+    xhr.open('POST',emailSendUrl,true);
+    xhr.setRequestHeader('content-type','application/json')
+    xhr.onreadystatechange=()=>{
+        if(xhr.readyState===XMLHttpRequest.DONE){
+            if(JSON.parse(xhr.response).msg!='success'){
+                showToast(JSON.parse(xhr.response).msg)
+            }else{
+                sender.value='';
+                receiver.value='';
+                fileInput.value=''
+                console.log('success!!')
+                showToast('Email Sent Successfully 😎')
+                sharingContainer.style.display="none";
+            }
         }
-    })
+    }
+    xhr.send(body)
+
 })
 let toastTimer
 

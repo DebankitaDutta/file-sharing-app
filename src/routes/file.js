@@ -17,6 +17,9 @@ const upload=multer({
     limits:{fileSize:  1000000*100}
 }).single('myfile');
 
+
+//file upload route
+    
 router.post('/',(req,res)=>{
     try{
         upload(req,res,async(err)=>{
@@ -42,18 +45,21 @@ router.post('/',(req,res)=>{
     }
 })
 
+//email sending route
+
 router.post('/send',async(req,res)=>{
     const{uuid,emailFrom,emailTo}=req.body
     console.log(uuid,' ',emailFrom,' ',emailTo)
 
     //validate request
     if(!uuid || !emailFrom ||!emailTo){
-        return res.status(422).send({error:'All fields are required'})
+        return res.status(422).send({msg:'All fields are required'})
     }
     // get data from db
     const file= await File.findOne({uuid:uuid})
     if(file.sender){
-        return res.status(422).send({error:'email is already sent'})
+        console.log('email sent%%%%%%%%%%%%%%%%%%%')
+        return res.status(422).send({msg:'email is already sent!'})
     }
     file.sender=emailFrom
     file.receiver=emailTo
@@ -73,7 +79,7 @@ router.post('/send',async(req,res)=>{
             expires:'24 hours'
         })
     }) 
-    res.send({success: true})
+    res.send({msg: 'success'})
 })
 
 module.exports= router
