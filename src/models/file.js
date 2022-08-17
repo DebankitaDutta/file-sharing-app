@@ -8,6 +8,6 @@ const fileSchema = new Schema({
     uuid:{type: String, required: true},
     sender:{type: String,required:false},
     receiver:{type: String,required:false},
-},{timeStamps : true});
+},{timestamps:true});
 
 module.exports= mongoose.model('File',fileSchema)
