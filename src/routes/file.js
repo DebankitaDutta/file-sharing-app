@@ -58,7 +58,6 @@ router.post('/send',async(req,res)=>{
     // get data from db
     const file= await File.findOne({uuid:uuid})
     if(file.sender){
-        console.log('email sent%%%%%%%%%%%%%%%%%%%')
         return res.status(422).send({msg:'email is already sent!'})
     }
     file.sender=emailFrom
