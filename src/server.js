@@ -2,12 +2,13 @@ require('dotenv').config()
 const bp = require("body-parser");
 const cors = require('cors');
 const express=require('express');
+var favicon=require('serve-favicon')
 const path = require('path');
 const app=express();
 const connectMDB= require('./config/db')
 const PORT= process.env.PORT ||4000
 
-
+app.use(favicon(path.join(__dirname,'../assets/img','favicon.ico')))
 app.use(cors({
     origin:'*',
     optionsSuccessStatus: 200,
