@@ -6,6 +6,7 @@ var favicon=require('serve-favicon')
 const path = require('path');
 const app=express();
 const connectMDB= require('./src/config/db')
+const scheduler=require('./services/scheduler_service')
 const PORT= process.env.PORT ||4000
 
 app.use(favicon(path.join(__dirname,'./assets/img','favicon.ico')))
@@ -17,7 +18,7 @@ app.use(cors({
 app.use(express.json())
 app.use(express.urlencoded({extended:false}));
 app.use('/public', express.static(path.join(__dirname, '/assets')));
-
+// scheduler() //to delete the files from database which exceeds more than 24 hours
 
 //apis
 app.use('/api/files',require('./src/routes/file'))
@@ -27,6 +28,7 @@ app.use('/auth',require('./src/routes/auth')) // auth apis
 
 app.get('/', (req, res ) => {
     return res.sendFile(path.join(__dirname, './assets/index.html'));
+
 });
 
 //setting up the view engine

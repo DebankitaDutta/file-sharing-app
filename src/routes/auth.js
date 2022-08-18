@@ -48,10 +48,8 @@ auth.createUserWithEmailAndPassword(authentication,email,password)
 
 //login api
 router.post('/login',async(req,res)=>{
-    console.log('inside login route')
-    // console.log(req.body)
-    console.log(req.body.email)
-    console.log(req.body.password)
+    // console.log(req.body.email)
+    // console.log(req.body.password)
     // object destructuring
     const{email,password}= req.body;
 
@@ -63,7 +61,6 @@ router.post('/login',async(req,res)=>{
     //login user details validation
 
     errMsg= await loginUserValidation(loginUser)
-    // console.log('********8errMsg from auth.js login 3*****',errMsg)
     if(errMsg!=""){
         // console.log('********errMsg from auth.js login 4*****',errMsg)
         return res.status(201).json({msg:errMsg})

@@ -96,7 +96,7 @@ const uploadFile=()=>{
     progressContainer.style.display='Block'
     xhr.onreadystatechange=()=>{
         if(xhr.readyState===XMLHttpRequest.DONE){
-            console.log(xhr.response)
+            // console.log(xhr.response)
             showLink(JSON.parse(xhr.response))
         }
     }
@@ -121,7 +121,7 @@ const updateProgress=(e)=>{
 
 //for showing the link once the file gets uploaded
  const showLink=({file})=>{
-        console.log(file)
+        // console.log(file)
         copyUrl.value=file
         progressContainer.style.display='none'
         sharingContainer.style.display='block'
@@ -143,7 +143,7 @@ emailForm.addEventListener('submit',(e)=>{
         emailFrom:emailForm.elements['email-from'].value,
         emailTo:emailForm.elements['email-to'].value,
     };
-    console.table(formData)
+    // console.table(formData)
    const body=JSON.stringify(formData)
     xhr.open('POST',emailSendUrl,true);
     xhr.setRequestHeader('content-type','application/json')
@@ -155,7 +155,6 @@ emailForm.addEventListener('submit',(e)=>{
                 sender.value='';
                 receiver.value='';
                 fileInput.value=''
-                console.log('success!!')
                 showToast('Email Sent Successfully 😎')
                 sharingContainer.style.display="none";
             }
@@ -181,7 +180,6 @@ const logOut=document.querySelector('.logOut')
 logOut.addEventListener('click',logout)
 
 function logout(){
-    console.log('logging out')
     signOut(auth).then(res=>{
         console.log('successfully loggedout')
         location.replace("/");

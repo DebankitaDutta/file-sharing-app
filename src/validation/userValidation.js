@@ -16,7 +16,6 @@ async function signupUserValidation(userDetails) {
     }
 
     if(password!=confirmPassword){
-        console.log(password,'  ',confirmPassword)
        return "both passwords are not matching"
     }
     if(phoneNumber.length!=10){
@@ -51,15 +50,6 @@ async function signupUserValidation(userDetails) {
     return userExist
 }
 
-async function forgotPasswordEmailValidation(email){
-   if(!email){
-        return "email id is required"
-    }
-     //if email already exists
-    const  userExist= await userExists(email)
-    return userExist
-}
-
  async function userExists(email){
     const userRef=db.collection('users');
     const emailExists= await userRef.where('email','==',email).get();
@@ -69,4 +59,14 @@ async function forgotPasswordEmailValidation(email){
     return ""
 }
 
-module.exports={signupUserValidation,loginUserValidation,forgotPasswordEmailValidation}
+//forgot password validation for future
+// async function forgotPasswordEmailValidation(email){
+//     if(!email){
+//          return "email id is required"
+//      }
+//       //if email already exists
+//      const  userExist= await userExists(email)
+//      return userExist
+//  }
+
+module.exports={signupUserValidation,loginUserValidation}

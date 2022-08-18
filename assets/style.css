@@ -5,6 +5,9 @@
     --container-width:500px;
     --light-blue: #0497ffb0;
     --dark-blue: #0497ffe6;
+    --facebook:#3b5998;
+    --github:#1d1a1a;
+    --google:#34A853
 }
 
 *{
@@ -89,12 +92,13 @@ form{
 }
 
 .input-field input{
-    background: none;
     outline: none;
     border: none;
     line-height: 1;
     font-weight: 600;
-    font-size: 1.2rem;
+    font-size: 1rem;
+    background-color: #f0f0f0;
+    border-radius: 20%;
     color: #333;
     margin-left: 25px;
 } 
@@ -146,9 +150,32 @@ form{
     transition: all 0.5s ease-in-out;
 }
 
-.social-icon:hover{
-    color: var(--dark-blue);
-    border-color:var(--dark-blue)
+.social-icon.facebook:hover,
+.social-icon.facebook1:hover{
+    background-color: #dee0e4;
+    border-color:var(--facebook)
+}
+.social-icon.github:hover,
+.social-icon.github1:hover{
+    background-color: #dee0e4;
+    border-color:var(--github)
+}
+.social-icon.google:hover,
+.social-icon.google1:hover{
+    background-color: #dee0e4;
+    border-color:var(--google)
+}
+.social-icon.facebook,
+.social-icon.facebook1{
+    color:var(--facebook)
+}
+.social-icon.github,
+.social-icon.github1{
+    color:var(--github)
+}
+.social-icon.google,
+.social-icon.google1{
+    color: var(--google);
 }
 
 .signin-signup{
@@ -321,7 +348,56 @@ form.sign-up-form{
 /* media query */
 
 @media all and (max-width:500px){
+
+    .container{
+        width:300px;
+    }
     .container::before{
+        height: 376vh;
+        width: 192vw;
+        top: -73%;
+        right: 46%;
+    }
+    .panel{
+        justify-content: normal;
+    }
+    .panel .content {
+        margin: 0 0%;
+        margin-right: 10%;
+        margin-left: 2%;
+    }
+    .panel .image{
+        width: 100%;
+        height: 38%;
+        margin-top: 2rem;
+    }
+    .sign-in-form,.sign-up-form{
+        width: 50vw;
+        padding: 0px 18px;
+    }
+    .input-field input:placeholder-shown {
+        color: #aaa;
+        font-weight: 500;
+        padding-left: 10px;
+    }
+    .input-field input {
+        width: 98%;
+        margin-left: 4px;
+    } 
+    .right-pannel .image{
+        height: 40%;
+        margin-top: 3rem;
+    }
+    
+    .toast {
+        width: 35%;
+        font-size: 14px;
+        right: -37%;
+        height: 5rem;
+        padding: 6px 3px;
+    }
+
+    /* .container::before{
         height: 400vh;
         width: 500vw;
         top: -50%;
@@ -382,7 +458,46 @@ form.sign-up-form{
     }
     .right-pannel .content{
         margin-right: 1rem;
+    } */
+}
+
+
+@media all and (min-width:501px) and (max-width:899px){
+    .container{
+        width:300px;
     }
+    .container::before{
+        height: 376vh;
+        width: 192vw;
+        top: -73%;
+        right: 46%;
+    }
+    .panel{
+        justify-content: normal;
+    }
+    .panel .content{
+        margin:0 2%;
+    }
+    .panel .image{
+        width: 100%;
+        height: 53%;
+    }
+    .sign-in-form,.sign-up-form{
+        width: 53vw;
+        padding: 0,5px;
+        padding: 0 35px;
+    }
+    .right-pannel .image{
+        height: 45%;
+    }
+    .toast{
+        width: 31%;
+        font-size: 14px;
+        right: -32%;
+        height: 3rem;
+        padding: 6px 3px;
+    }
+   
 }
 
 @media all and (min-width: 900px) {
@@ -415,136 +530,3 @@ form.sign-up-form{
     }
     
 }
-
-@media all and (min-width:501px) and (max-width:899px){
-    .container::before{
-        height: 200vh;
-        width: 202vw;
-        top: -53%;
-        right: 58%;
-    }
-    .input-field{
-        width: 86%;
-        grid-template-columns: 9px 92%;
-    }
-    .input-field input:placeholder-shown {
-        font-size: 85%;
-    }
-    form{
-        padding: 0px 4rem;
-    }
-    .panel.left-pannel{
-        justify-content: normal;
-        width: 80%;
-    }
-    .forms-container .signin-signup{
-        width: 100%;
-        height: 70%;
-        transform: translate(-50%,-50%);
-        left: 70%;
-    }
-    form.sign-in-form{
-        padding-left: 3.5rem;
-        padding-right: 8rem;
-        width: 46vw;
-        /* margin-left: 1rem; */
-        justify-content: normal;
-    }
-    .btn.transparent{
-        font-size: 1rem;
-    }
-    .container.sign-up-mode .signin-signup {
-        left: 24%;
-        top: 63%;
-    }
-    .container.sign-up-mode .signup-signup {
-        top: 26%;
-        left: 16%;
-        font-size: 14px;
-    }
-    .social-text {
-        margin-left: 2rem;
-    }
-    .container.sign-up-mode::before {
-        transform: translate(89%,-33%);
-        right: 57%;
-    }
-    .container.sign-up-mode .right-pannel {
-        justify-content: normal;
-        width: 7rem;
-    }
-    .panels-container{
-        width: 33rem;
-        height: 33rem;
-    }
-    .panel .content{
-        margin-right: 3rem;
-        margin-left: 1rem;
-    }
-    .left-pannel .image{
-        width: 18rem;
-        height: 51%;
-        margin-top: 3rem;
-    }
-    .image {
-        width: 12rem;
-        height: 14rem;
-    }
-    .panel h3{
-        font-size: 1.8rem;
-    }
-}
-
-/* @media all and (min-width:900px) and (max-width:999px){
-    .panel{
-        justify-content: center;
-    }
-    .left-pannel .image {
-        width: 100%;
-        height: 40%;
-    }
-    .panel p {
-        font-size: 2rem;
-    }
-    .panel h3 {
-        font-size: 3.8rem;
-    }
-    .btn.transparent {
-        margin: 15px;
-        width: 147px;
-        height: 58px;
-        font-size: 1.2rem;
-    }
-    form{
-        font-size: 2rem;
-        width: 55vw;
-    }
-    .input-field{
-        margin: 14px 0;
-    }
-    .input-field input:placeholder-shown {
-        font-size: 1.8rem;
-    }
-    .btn {
-        width: 152px;
-        height: 60px;
-        margin: 14px 0;
-        font-size: 1.7rem;
-    }
-    .social-media {
-        margin: 2rem;
-    }
-    .social-icon {
-        height: 52px;
-        width: 52px;
-        margin: 0px 1rem;
-    }
-    .panel.left-pannel .content {
-        margin-left: 0;
-    }
-    .right-pannel .image {
-        width: 100%;
-        height: 37%;
-        margin-left: 30%;
-    }
-} */

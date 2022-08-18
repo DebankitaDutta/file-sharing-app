@@ -18,10 +18,10 @@ const nodeMailer=require('nodemailer');
     }
      transport.sendMail(mailOptions,(err,info)=>{
         if(err){
-            console.log('%%%%%%%%%%%%%err while mail sent%%%%%%%%%',err)
+            console.log(err)
         }
         else{
-            console.log('success info while mail sent%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%',info)
+            console.log(info)
         }
     })
 }

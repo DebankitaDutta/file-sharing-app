@@ -59,7 +59,7 @@ let provider=new GoogleAuthProvider()
     console.log('g-login called')
     await signInWithPopup(auth,provider).then(async(res)=>{
 
-        console.log('succedeed',res.user)
+        // console.log('succedeed',res.user)
         const newGoogleUser={
             uid:res.user.uid,
             email:res.user.email,
@@ -68,7 +68,7 @@ let provider=new GoogleAuthProvider()
         }
         var collectionRef=collection(db,"GoogleUsers")
         const docRef=await addDoc(collectionRef,newGoogleUser) //storing data into firebase
-        console.log('google user stored into the db')
+        // console.log('google user stored into the db')
         checkUserStatus();
     }).catch(error=>{
         if (error.code === 'auth/account-exists-with-different-credential') {
@@ -89,7 +89,7 @@ let githubProvider= new GithubAuthProvider()
 //login with github
 async function GithubLogin(){
     await signInWithPopup(auth,githubProvider).then(async(res)=>{
-        console.log('succeeded ',res.user)
+        // console.log('succeeded ',res.user)
         const newGithubUser={
             uid:res.user.uid,
             email:res.user.email,
@@ -97,7 +97,7 @@ async function GithubLogin(){
         }
         var collectionRef= collection(db,'GithubUsers');
         const docRef=await addDoc(collectionRef,newGithubUser)
-        console.log('github user stored into the db')
+        // console.log('github user stored into the db')
         checkUserStatus();
     }).catch(error=>{
         if (error.code === 'auth/account-exists-with-different-credential') {
@@ -119,7 +119,7 @@ let FacebookProvider= new FacebookAuthProvider()
 async function FacebookLogin(){
     console.log('fb clicked')
     signInWithPopup(auth,FacebookProvider).then(async(res)=>{
-        console.log('succeeded ',res.user)
+        // console.log('succeeded ',res.user)
         const newFacebookUser={
             uid:res.user.uid,
             email:res.user.email,
@@ -127,7 +127,7 @@ async function FacebookLogin(){
         }
         var collectionRef= collection(db,'FacebookUser');
         const docRef=await addDoc(collectionRef,newFacebookUser)
-        console.log('facebook user stored into the db')
+        // console.log('facebook user stored into the db')
         await checkUserStatus();
     }).catch(error=>{
         console.log('error.code=  ',error.code)
@@ -146,14 +146,13 @@ async function FacebookLogin(){
 
  function HandlingAccWithSameEmailError(error,newProvider){
     var pendingCred=newProvider.credentialFromError(error);
-    // console.log('pendingCred= ',pendingCred)
     var email=error.customData.email;
     fetchSignInMethodsForEmail(auth,email).then(async(methods)=>{
-        console.log('methods[0]= ',methods[0])
+        // console.log('methods[0]= ',methods[0])
         var existingProvider= await getProviderForProviderId(methods[0])
         // console.log('existingProvider= ',existingProvider)
         signInWithPopup(auth,existingProvider).then(result=>{
-            console.log('result.user= ',result.user)
+            // console.log('result.user= ',result.user)
             linkWithCredential(auth.currentUser,pendingCred).then(function(usercred) {
                 return
                 });
@@ -181,7 +180,7 @@ function getProviderForProviderId(method){
 async function checkUserStatus(){
    await onAuthStateChanged(auth,(user)=>{
         if(user){
-            console.log('user loggedin, uid= ',user.uid)
+            // console.log('user loggedin, uid= ',user.uid)
             location.replace("/public/fileUpload.html");
         }
         else{
@@ -202,7 +201,6 @@ async function LoginWithEmail(e){
         email,
         password
     }
-    console.log('loginCred= ',JSON.stringify(loginCred))
     xhr.open('POST',loginUrl,true)
     xhr.setRequestHeader('Content-Type','application/json')
     xhr.send(JSON.stringify(loginCred))
@@ -224,12 +222,13 @@ var showToast=(msg)=>{
     toast.style.zIndex="2";
 
     if(msg.includes("combinations")){
-        toast.style.right= "-42%";
-        toast.style.height= "4.8rem";
+        toast.style.right= "-47%";
+        toast.style.height= "9rem";
         toast.style.width= "42%";
+        toast.style.padding= "10px 2px";
     }
     if(xhr.status!=200){
-        toast.style.background='#de4c6cb3';
+        toast.style.background='rgb(238 60 96 / 93%)';
     }
     else{
         toast.style.background='#43ec77cf'
@@ -259,12 +258,11 @@ async function Signup(e){
         confirmPassword,
         phoneNumber
     }
-    console.log(JSON.stringify(newUser))
      xhr.open('POST',signupUrl,true);
      xhr.setRequestHeader('Content-Type','application/json')
      xhr.onreadystatechange=()=>{
         if(xhr.readyState===XMLHttpRequest.DONE){
-            console.log((JSON.parse(xhr.response)).msg)
+            // console.log((JSON.parse(xhr.response)).msg)
             showToast((JSON.parse(xhr.response)).msg)
         }
      }

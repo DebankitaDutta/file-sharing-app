@@ -23,7 +23,7 @@ const upload=multer({
 router.post('/',(req,res)=>{
     try{
         upload(req,res,async(err)=>{
-            console.log('file**********',req.file)
+            console.log('file details**********',req.file)
             if(!req.file){
                 return res.json({err:'please upload a file'})
             }
@@ -34,8 +34,9 @@ router.post('/',(req,res)=>{
                 filename: req.file.filename,
                 path: req.file.path,
                 size: req.file.size,
-                uuid: uuidv4()
-    
+                uuid: uuidv4(),
+                createdAt:new Date(),
+                createdAtMs:new Date().getTime()
             })
             const response= await file.save();
             return res.json({file: `${process.env.APP_BASE_URL}/files/${file.uuid}`})
@@ -49,7 +50,7 @@ router.post('/',(req,res)=>{
 
 router.post('/send',async(req,res)=>{
     const{uuid,emailFrom,emailTo}=req.body
-    console.log(uuid,' ',emailFrom,' ',emailTo)
+    // console.log(uuid,' ',emailFrom,' ',emailTo)
 
     //validate request
     if(!uuid || !emailFrom ||!emailTo){
