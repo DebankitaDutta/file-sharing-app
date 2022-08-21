@@ -15,8 +15,8 @@ const receiver=document.querySelector('#receiver')
 const toast=document.querySelector('.toast')
 const xhr=new XMLHttpRequest();
 
-const emailSendUrl="http://localhost:4000/api/files/send"
-const url="http://localhost:4000/api/files"
+const emailSendUrl="http://34.118.204.74:3000/api/files/send"
+const url="http://34.118.204.74:3000/api/files"
 
 //firebase imports and configuration
 import { initializeApp } from 'https://www.gstatic.com/firebasejs/9.9.2/firebase-app.js'

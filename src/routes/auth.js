@@ -27,11 +27,15 @@ router.post('/signup',async(req,res)=>{
             msg:errMsg
         })
     }
+
+    console.log('************************AM HERE')
     
 //hashing the password with bcrypt
    const hashedPassword=await brcypt.hash(newUser.password,10)
    newUser.password=hashedPassword
    newUser.confirmPassword=hashedPassword
+   newUser.email=email.toLowerCase();
+//    console.log('**************email ',newUser.email)
 
 
 // signup code
@@ -59,7 +63,8 @@ router.post('/login',async(req,res)=>{
     }
     console.log('loginUser******',loginUser)
     //login user details validation
-
+    loginUser.email=loginUser.email.toLowerCase();
+   const noneCaseSensitive_email=loginUser.email.toLowerCase();
     errMsg= await loginUserValidation(loginUser)
     if(errMsg!=""){
         // console.log('********errMsg from auth.js login 4*****',errMsg)
@@ -67,8 +72,9 @@ router.post('/login',async(req,res)=>{
     }
     //fetching the user using it's unique email id
 
-    fetchUserByEmail= await db.collection('users').doc(email).get()
-    const actualHashedPassword=fetchUserByEmail.data().password
+    fetchUserByEmail= await db.collection('users').doc(noneCaseSensitive_email).get()
+    console.log('*********password****',fetchUserByEmail.data().password)
+    const actualHashedPassword=fetchUserByEmail.data().password;
     brcypt.compare(password,actualHashedPassword,(error,isEqual)=>{
         if(!isEqual){
            return res.status(401).json({msg:'please enter a valid password'})
@@ -76,7 +82,7 @@ router.post('/login',async(req,res)=>{
         
     //user logging in
 
-        auth.signInWithEmailAndPassword(authentication, email, password)
+        auth.signInWithEmailAndPassword(authentication, noneCaseSensitive_email, password)
         .then((userCredential) => {
             console.log('logged in')
            return res.status(200).json({msg:'successfully logged in'})
@@ -84,7 +90,7 @@ router.post('/login',async(req,res)=>{
         .catch((error) => {
             const errorCode = error.code;
             const errorMessage = error.message;
-            res.send(errorCode).json('msg',errorMessage)
+            res.status(401).json('msg',errorMessage)
         })
     })
 
