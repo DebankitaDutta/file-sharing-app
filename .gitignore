@@ -3,4 +3,4 @@ notes.txt
 uploads/*
 !uploads/.gitkeep
 .env
-config
+src/config
