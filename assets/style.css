@@ -125,6 +125,9 @@ form{
 .btn:hover{
     background: var(--dark-blue);
 }
+.btn.transparent:hover{
+    background-color: rgb(195, 195, 195);
+}
 
 .social-media{
     display:flex;
