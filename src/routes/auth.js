@@ -27,8 +27,6 @@ router.post('/signup',async(req,res)=>{
             msg:errMsg
         })
     }
-
-    console.log('************************AM HERE')
     
 //hashing the password with bcrypt
    const hashedPassword=await brcypt.hash(newUser.password,10)
