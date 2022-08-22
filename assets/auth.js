@@ -19,8 +19,8 @@ const firebaseConfig = {
     const db = getFirestore();
 
     const xhr=new XMLHttpRequest();
-    const loginUrl='http://34.118.204.74:3000/auth/login'
-    const signupUrl='http://34.118.204.74:3000/auth/signup'
+    const loginUrl='http://35.209.95.79:3000/auth/login'
+    const signupUrl='http://35.209.95.79:3000/auth/signup'
 
     const login=document.querySelector('.login')
     const google=document.querySelector('.google')
