@@ -3,6 +3,4 @@ notes.txt
 uploads/*
 !uploads/.gitkeep
 .env
-.git/src/config/firebaseAdmin.js
-src/config/firebaseConfig
-src/config/serviceAccountKey
+config
