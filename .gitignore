@@ -2,3 +2,5 @@ node_modules
 notes.txt
 uploads/*
 !uploads/.gitkeep
+.env
+src/config
